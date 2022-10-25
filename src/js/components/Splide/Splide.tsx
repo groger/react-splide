@@ -1,10 +1,9 @@
-import { Options, Splide as SplideCore } from '@splidejs/splide';
-import React, { ReactNode } from 'react';
-import { EVENTS } from '../../constants/events';
-import { SplideProps } from '../../types';
-import { classNames, isEqualDeep, isEqualShallow, merge } from '../../utils';
-import { SplideTrack } from '../SplideTrack/SplideTrack';
-
+import { Options, Splide as SplideCore } from "@gwroger/splidejs";
+import React, { ReactNode } from "react";
+import { EVENTS } from "../../constants/events";
+import { SplideProps } from "../../types";
+import { classNames, isEqualDeep, isEqualShallow, merge } from "../../utils";
+import { SplideTrack } from "../SplideTrack/SplideTrack";
 
 /**
  * The class for the Splide React node.
@@ -39,13 +38,13 @@ export class Splide extends React.Component<SplideProps> {
     const { options, extensions, transition } = this.props;
     const { current } = this.splideRef;
 
-    if ( current ) {
-      this.splide = new SplideCore( current, options );
-      this.bind( this.splide );
-      this.splide.mount( extensions, transition );
+    if (current) {
+      this.splide = new SplideCore(current, options);
+      this.bind(this.splide);
+      this.splide.mount(extensions, transition);
 
-      this.options = merge( {}, options || {} );
-      this.slides  = this.getSlides();
+      this.options = merge({}, options || {});
+      this.slides = this.getSlides();
     }
   }
 
@@ -53,7 +52,7 @@ export class Splide extends React.Component<SplideProps> {
    * Destroys the splide instance.
    */
   componentWillUnmount(): void {
-    if ( this.splide ) {
+    if (this.splide) {
       this.splide.destroy();
       this.splide = undefined;
     }
@@ -66,20 +65,20 @@ export class Splide extends React.Component<SplideProps> {
    * Updates and/or refreshes the splide when the component is updated.
    */
   componentDidUpdate(): void {
-    if ( ! this.splide ) {
+    if (!this.splide) {
       return;
     }
 
     const { options } = this.props;
 
-    if ( options && ! isEqualDeep( this.options, options ) ) {
+    if (options && !isEqualDeep(this.options, options)) {
       this.splide.options = options;
-      this.options = merge( {}, options );
+      this.options = merge({}, options);
     }
 
     const newSlides = this.getSlides();
 
-    if ( ! isEqualShallow( this.slides, newSlides ) ) {
+    if (!isEqualShallow(this.slides, newSlides)) {
       this.splide.refresh();
       this.slides = newSlides;
     }
@@ -90,8 +89,8 @@ export class Splide extends React.Component<SplideProps> {
    *
    * @param splide - A Splide instance.
    */
-  sync( splide: SplideCore ): void {
-    this.splide?.sync( splide );
+  sync(splide: SplideCore): void {
+    this.splide?.sync(splide);
   }
 
   /**
@@ -101,8 +100,8 @@ export class Splide extends React.Component<SplideProps> {
    *
    * @param control - A control pattern.
    */
-  go( control: number | string ): void {
-    this.splide?.go( control );
+  go(control: number | string): void {
+    this.splide?.go(control);
   }
 
   /**
@@ -111,9 +110,9 @@ export class Splide extends React.Component<SplideProps> {
    * @return An array with slide elements.
    */
   protected getSlides(): HTMLElement[] {
-    if ( this.splide ) {
+    if (this.splide) {
       const children = this.splide.Components.Elements?.list.children;
-      return children && Array.prototype.slice.call( children ) || [];
+      return (children && Array.prototype.slice.call(children)) || [];
     }
 
     return [];
@@ -124,16 +123,16 @@ export class Splide extends React.Component<SplideProps> {
    *
    * @param splide - A splide instance.
    */
-  protected bind( splide: SplideCore ): void {
-    EVENTS.forEach( ( [ event, name ] ) => {
-      const handler = this.props[ name ];
+  protected bind(splide: SplideCore): void {
+    EVENTS.forEach(([event, name]) => {
+      const handler = this.props[name];
 
-      if ( typeof handler === 'function' ) {
-        splide.on( event, ( ...args: any[] ) => {
-          handler( splide, ...args );
-        } );
+      if (typeof handler === "function") {
+        splide.on(event, (...args: any[]) => {
+          handler(splide, ...args);
+        });
       }
-    } );
+    });
   }
 
   /**
@@ -144,12 +143,15 @@ export class Splide extends React.Component<SplideProps> {
    *
    * @return An object with props without specified keys.
    */
-  omit<K extends keyof SplideProps>( props: SplideProps, keys: readonly K[] ): Omit<SplideProps, K> {
-    keys.forEach( key => {
-      if ( Object.prototype.hasOwnProperty.call( props, key ) ) {
-        delete props[ key ];
+  omit<K extends keyof SplideProps>(
+    props: SplideProps,
+    keys: readonly K[]
+  ): Omit<SplideProps, K> {
+    keys.forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(props, key)) {
+        delete props[key];
       }
-    } );
+    });
 
     return props;
   }
@@ -160,15 +162,21 @@ export class Splide extends React.Component<SplideProps> {
    * @return A root node.
    */
   render(): ReactNode {
-    const { className, tag: Root = 'div', hasTrack = true, children, ...props } = this.props;
+    const {
+      className,
+      tag: Root = "div",
+      hasTrack = true,
+      children,
+      ...props
+    } = this.props;
 
     return (
       <Root
-        className={ classNames( 'splide', className ) }
-        ref={ this.splideRef }
-        { ...this.omit( props, [ 'options', ...EVENTS.map( event => event[ 1 ] ) ] ) }
+        className={classNames("splide", className)}
+        ref={this.splideRef}
+        {...this.omit(props, ["options", ...EVENTS.map((event) => event[1])])}
       >
-        { hasTrack ? <SplideTrack>{ children }</SplideTrack> : children }
+        {hasTrack ? <SplideTrack>{children}</SplideTrack> : children}
       </Root>
     );
   }

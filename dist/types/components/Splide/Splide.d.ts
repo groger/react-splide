@@ -1,6 +1,6 @@
-import { Splide as SplideCore } from '@splidejs/splide';
-import React, { ReactNode } from 'react';
-import { SplideProps } from '../../types';
+import { Splide as SplideCore } from "@gwroger/splidejs";
+import React, { ReactNode } from "react";
+import { SplideProps } from "../../types";
 /**
  * The class for the Splide React node.
  *
