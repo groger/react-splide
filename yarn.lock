@@ -322,10 +322,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@gwroger/splidejs@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@gwroger/splidejs/-/splidejs-0.0.1.tgz#31de4bb200bd24298ac59d3ea4a77385b7bc4cc1"
-  integrity sha512-R4UjOUBOSqp7TM1BmBnntB9W/N2MwcFvOXc10gfCmuW9PwSYyCSiXLC2GEj71zdpmrfUVdsVwYNYpDOEC+GuXw==
+"@gwroger/splidejs@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@gwroger/splidejs/-/splidejs-0.0.2.tgz#6bc2102cd2db3db690b8e8d8d0a5080b8f494f81"
+  integrity sha512-LQaFPuZBcgihjMI5WaE7Pb2fUs9NFScR15qEObVQs9TL1/TNI464YlXgSidr3Nr6reag549+t9cj5eJ1iD34vQ==
 
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.6"

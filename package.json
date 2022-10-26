@@ -1,6 +1,6 @@
 {
   "name": "@gwroger/react-splide",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The React component for Splide using @gwroger/splidejs",
   "license": "MIT",
   "main": "dist/js/react-splide.cjs.js",
@@ -18,10 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Splidejs/react-splide.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Splidejs/react-splide/issues"
+    "url": "https://github.com/groger/react-splide.git"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
@@ -64,6 +61,6 @@
     "./css/*": "./dist/css/themes/splide-*.min.css"
   },
   "dependencies": {
-    "@gwroger/splidejs": "^0.0.1"
+    "@gwroger/splidejs": "^0.0.2"
   }
 }
